@@ -177,6 +177,22 @@ open class CarPlayNavigationViewController: UIViewController, BuildingHighlighti
         let template = CPListTemplate(title: alternativesTitle,
                                       sections: variants)
         template.delegate = self
+        
+        if #available(iOS 14.0, *) {
+            let alternativesEmptyVariantsTitle = NSLocalizedString("CARPLAY_ALTERNATIVES_EMPTY_TITLE",
+                                              bundle: .mapboxNavigation,
+                                              value: "No results",
+                                              comment: "Title for the alternative list template empty variants")
+            
+            let alternativesEmptyVariantsSubtitle = NSLocalizedString("CARPLAY_ALTERNATIVES_EMPTY_SUBTITLE",
+                                              bundle: .mapboxNavigation,
+                                              value: "No alternative routes found.",
+                                              comment: "Subtitle for the alternative list template empty variants")
+            
+            template.emptyViewTitleVariants = [alternativesEmptyVariantsTitle]
+            template.emptyViewSubtitleVariants = [alternativesEmptyVariantsSubtitle]
+        }
+        
         return template
     }
     
